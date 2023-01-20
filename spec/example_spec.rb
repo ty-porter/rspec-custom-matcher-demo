@@ -9,11 +9,9 @@ RSpec.describe ExampleSender do
     raise ArgumentError.new("Expected values must be a hash!") unless expected.is_a?(Hash)
 
     match do |actual|
-      @actual = JSON.parse(actual)
-      expected.all? { |key, value| value == @actual[key.to_s] }
+      actual = JSON.parse(actual)
+      expected.all? { |key, value| value == actual[key.to_s] }
     end
-
-    diffable
   end
 
   describe "#send_message" do
